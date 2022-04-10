@@ -57,10 +57,10 @@ MIT License
 If you find our work useful in your research, please consider citing:
 
 ```
-@article{guibas2021adaptive,
-  title={Adaptive Fourier Neural Operators: Efficient Token Mixers for Transformers},
+@inproceedings{guibas2021efficient,
+  title={Efficient Token Mixing for Transformers via Adaptive Fourier Neural Operators},
   author={Guibas, John and Mardani, Morteza and Li, Zongyi and Tao, Andrew and Anandkumar, Anima and Catanzaro, Bryan},
-  journal={arXiv preprint arXiv:2111.13587},
+  booktitle={International Conference on Learning Representations},
   year={2021}
 }
 ```

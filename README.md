@@ -33,9 +33,6 @@ mixer = AFNO1D()
 mixer = AFNO2D()
 ```
 
-## License
-MIT License
-
 ## Citation
 If you find our work useful in your research, please consider citing:
 ```
