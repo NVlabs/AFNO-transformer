@@ -120,7 +120,7 @@ class Block(nn.Module):
         args = get_args()
         self.norm1 = norm_layer(dim)
 
-        if "fno" == args.mixing_type:
+        if "afno" == args.mixing_type:
             self.filter = AdaptiveFourierNeuralOperator(dim, h=h, w=w)
         else:
             raise NotImplementedError
