@@ -6,19 +6,18 @@ import torch.fft
 import torch.nn as nn
 import torch.nn.functional as F
 
-class BLOCK_FNO2D(nn.Module):
+class BFNO2D(nn.Module):
     """
     hidden_size: channel dimension size
     num_blocks: how many blocks to use in the block diagonal weight matrices (higher => less complexity but less parameters)
     sparsity_threshold: lambda for softshrink
     hard_thresholding_fraction: how many frequencies you want to completely mask out (lower => hard_thresholding_fraction^2 less FLOPs)
     """
-    def __init__(self, hidden_size, num_blocks=8, sparsity_threshold=0.01, hard_thresholding_fraction=1, hidden_size_factor=1):
+    def __init__(self, hidden_size, num_blocks=8, hard_thresholding_fraction=1):
         super().__init__()
         assert hidden_size % num_blocks == 0, f"hidden_size {hidden_size} should be divisble by num_blocks {num_blocks}"
 
         self.hidden_size = hidden_size
-        self.sparsity_threshold = sparsity_threshold
         self.num_blocks = num_blocks
         self.block_size = self.hidden_size // self.num_blocks
         self.hard_thresholding_fraction = hard_thresholding_fraction

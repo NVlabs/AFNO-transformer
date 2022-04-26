@@ -30,6 +30,8 @@ warnings.filterwarnings("ignore", message="Argument interpolation should be")
 from torch.utils.tensorboard import SummaryWriter
 import os
 
+from afno import afno1d, afno2d, bfno2d, gfn, ls, sa
+
 def get_args_parser():
     parser = argparse.ArgumentParser('DeiT training and evaluation script', add_help=False)
     parser.add_argument('--batch-size', default=64, type=int)
@@ -187,7 +189,7 @@ def get_args_parser():
     parser.add_argument('--ls-w', type=int, default=4)
     parser.add_argument('--ls-dp-rank', type=int, default=16)
 
-    parser.add_argument('--mixing-type', type=str, default="fno", choices=['fno', 'sa', 'ls', 'gfn', 'bfno'],
+    parser.add_argument('--mixing-type', type=str, default="afno", choices=['afno', 'sa', 'ls', 'gfn', 'bfno'],
                         help='attention/mixer type')
 
     return parser

@@ -20,6 +20,9 @@ from torch.utils.checkpoint import checkpoint_sequential
 from einops import rearrange, repeat
 from einops.layers.torch import Rearrange
 
+from afno import afno1d, afno2d, bfno2d, gfn, ls, sa
+
+
 _logger = logging.getLogger(__name__)
 
 
@@ -124,6 +127,22 @@ class Block(nn.Module):
             self.filter = AdaptiveFourierNeuralOperator(dim, h=h, w=w)
         else:
             raise NotImplementedError
+
+
+
+        #to be added soon ... @John: pls double check
+        # if args.mixing_type == "afno":
+        #     self.filter = afno2d.AFNO2D(hidden_size=768, num_blocks=8, sparsity_threshold=0.01, hard_thresholding_fraction=1, hidden_size_factor=1)
+        # elif args.mixing_type == "bfno":
+        #     self.filter = bfno2d.BFNO2D(hidden_size=768, num_blocks=8, hard_thresholding_fraction=1)
+        # elif args.mixing_type == "sa":
+        #     self.filter = sa.SelfAttention(dim=768, h=14, w=8)
+        # if args.mixing_type == "gfn":
+        #     self.filter = gfn.GlobalFilter(dim=768, h=14, w=8)
+        # elif args.mixing_type == "ls":
+        #     self.filter = ls.AttentionLS(dim, num_heads=8, qkv_bias=False, qk_scale=None, attn_drop=0., proj_drop=0., rpe=False, nglo=1, dp_rank=2, w=2)
+
+
 
         self.drop_path = DropPath(drop_path) if drop_path > 0. else nn.Identity()
         self.norm2 = norm_layer(dim)
