@@ -30,7 +30,6 @@ warnings.filterwarnings("ignore", message="Argument interpolation should be")
 from torch.utils.tensorboard import SummaryWriter
 import os
 
-from afno import afno1d, afno2d, bfno2d, gfn, ls, sa
 
 def get_args_parser():
     parser = argparse.ArgumentParser('DeiT training and evaluation script', add_help=False)
