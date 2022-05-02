@@ -140,7 +140,8 @@ class Block(nn.Module):
 
         #to be added soon ... @John: pls double check
         if args.mixing_type == "afno":
-            self.filter = AFNO2D(hidden_size=768, num_blocks=8, sparsity_threshold=0.01, hard_thresholding_fraction=1, hidden_size_factor=1)
+            self.filter = AFNO2D(hidden_size=args.hidden_size, num_blocks=args.fno_blocks, sparsity_threshold=0.01, hard_thresholding_fraction=1, hidden_size_factor=1)
+            #self.filter = AdaptiveFourierNeuralOperator(dim, h=h, w=w)
         elif args.mixing_type == "bfno":
             self.filter = BFNO2D(hidden_size=768, num_blocks=8, hard_thresholding_fraction=1)
         elif args.mixing_type == "sa":

@@ -142,7 +142,7 @@ def get_args_parser():
     # Dataset parameters
     parser.add_argument('--data-path', default='/datasets01/imagenet_full_size/061417/', type=str,
                         help='dataset path')
-    parser.add_argument('--data-set', default='IMNET', choices=['CIFAR', 'IMNET', 'INAT', 'INAT19'],
+    parser.add_argument('--data-set', default='IMNET', choices=['CIFAR10', 'CIFAR100', 'CARS', 'FLOWERS', 'IMNET'],
                         type=str, help='Image Net dataset path')
     parser.add_argument('--inat-category', default='name',
                         choices=['kingdom', 'phylum', 'class', 'order', 'supercategory', 'family', 'genus', 'name'],
@@ -229,6 +229,7 @@ def main(args):
     cudnn.benchmark = True
 
     dataset_train, args.nb_classes = build_dataset(is_train=True, args=args)
+    print('args.nb_classes', args.nb_classes)
     dataset_val, _ = build_dataset(is_train=False, args=args)
 
     if True:  # args.distributed:
@@ -283,7 +284,7 @@ def main(args):
         print('mix up is not used')
 
     model = AFNONet(
-        img_size=args.input_size, 
+        img_size=args.input_size, num_classes=args.nb_classes,
         patch_size=4, embed_dim=args.hidden_size, depth=args.num_layers, mlp_ratio=4,
         norm_layer=partial(nn.LayerNorm, eps=1e-6)
     )
