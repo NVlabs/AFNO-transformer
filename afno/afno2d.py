@@ -51,7 +51,7 @@ class AFNO2D(nn.Module):
         o2_real = torch.zeros(x.shape, device=x.device)
         o2_imag = torch.zeros(x.shape, device=x.device)
 
-        total_modes = N // 2 + 1
+        total_modes = W // 2 + 1
         kept_modes = int(total_modes * self.hard_thresholding_fraction)
 
         o1_real[:, :, :kept_modes] = F.relu(
